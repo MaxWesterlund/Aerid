@@ -7,10 +7,6 @@ public class PlaneMovement : MonoBehaviour
 {   
     Rigidbody rb;
 
-    [Header("Stuff")]
-    [SerializeField] Transform lWing;
-    [SerializeField] Transform rWing;
-
     [Header("Pitch")]
     [SerializeField] float pitchAcceleration;
     [SerializeField] float pitchDeacceleration;
@@ -39,14 +35,32 @@ public class PlaneMovement : MonoBehaviour
 
     float forwardSpeed;
 
+    bool canMove = true;
+
     void Awake() {
         rb = GetComponent<Rigidbody>();
+        GameManager gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        gameManager.Collision += OnCollision;
+        gameManager.Restart += OnRestart;
     }
 
     void FixedUpdate() {
+        if (!canMove) {
+            return;
+        }
         TiltPlane();
         SteerPlane();
         AddForces();
+    }
+
+    void OnCollision() {
+        rb.useGravity = true;
+        canMove = false;
+    }
+
+    void OnRestart() {
+        rb.useGravity = false;
+        canMove = true;
     }
 
     void OnTilt(InputValue info) {

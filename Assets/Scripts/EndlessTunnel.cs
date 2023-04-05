@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class EndlessTunnel : MonoBehaviour
 {
-    [SerializeField] GameObject[] parts;
+    [SerializeField] GameObject part;
     [SerializeField] Transform target;
 
     const int amount = 8;
 
-    GameObject[] currentParts = new GameObject[amount];
+    GameObject[] parts = new GameObject[amount];
 
-    float lastPosition = 0;
-    int lastIndex = 0;
+    float currentPosition = 0;
+    int partIndex = 0;
 
     void Start() {
         GameObject spawnPoint = new("Spawn Point");
@@ -20,18 +20,22 @@ public class EndlessTunnel : MonoBehaviour
         target.position = spawnPoint.transform.position;
  
         for (int i = 0; i < amount; i++) {
-            currentParts[i] = Instantiate(parts[Random.Range(0, parts.Length)], new Vector3(0, 0, -10 * amount / 2 + 10 * i), Quaternion.identity);
+            GameObject obj = new("Tunnel " + i);
+            obj = Instantiate(part, new Vector3(0, 0, -10 * amount / 2 + 10 * i), Quaternion.identity);
+            obj.GetComponent<PartSelection>().ChooseRandom();
+            parts[i] = obj;
         }
     }
 
     void Update() {
-        if (target.transform.position.z + (10 * amount / 2) - lastPosition > 10) {
-            lastIndex += 1;
-            if (lastIndex >= amount) {
-                lastIndex = 0;
+        if (target.transform.position.z + (10 * amount / 2) - currentPosition > 10) {
+            currentPosition += 10;
+            parts[partIndex].transform.position = new Vector3(0, 0, currentPosition);
+            parts[partIndex].GetComponent<PartSelection>().ChooseRandom();
+            partIndex += 1;
+            if (partIndex >= amount) {
+                partIndex = 0;
             }
-            lastPosition += 10;
-            currentParts[lastIndex].transform.position = new Vector3(0, 0, lastPosition);
         }
     }
 }
