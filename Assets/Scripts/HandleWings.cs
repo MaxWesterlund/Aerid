@@ -26,11 +26,14 @@ public class HandleWings : MonoBehaviour {
     void EnableWing(GameObject wing, bool b) {
         if (b) {
             wing.transform.parent = this.transform;
-            wing.GetComponent<Rigidbody>().useGravity = false;
+            Destroy(wing.GetComponent<Rigidbody>());
         }
         else {
             wing.transform.parent = null;
-            wing.GetComponent<Rigidbody>().useGravity = true;
+            if (wing.GetComponent<Rigidbody>() != null) {
+                return;
+            }
+            wing.AddComponent<Rigidbody>();
         }
     }
 }

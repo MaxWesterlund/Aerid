@@ -44,15 +44,6 @@ public class PlaneMovement : MonoBehaviour
         gameManager.Restart += OnRestart;
     }
 
-    void FixedUpdate() {
-        if (!canMove) {
-            return;
-        }
-        TiltPlane();
-        SteerPlane();
-        AddForces();
-    }
-
     void OnCollision() {
         rb.useGravity = true;
         canMove = false;
@@ -69,6 +60,15 @@ public class PlaneMovement : MonoBehaviour
 
     void OnSteer(InputValue info) {
         steerVector = info.Get<Vector2>();
+    }
+
+    void FixedUpdate() {
+        if (!canMove) {
+            return;
+        }
+        TiltPlane();
+        SteerPlane();
+        AddForces();
     }
 
     void TiltPlane() {

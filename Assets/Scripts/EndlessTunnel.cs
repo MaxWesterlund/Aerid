@@ -20,8 +20,8 @@ public class EndlessTunnel : MonoBehaviour
         target.position = spawnPoint.transform.position;
  
         for (int i = 0; i < amount; i++) {
-            GameObject obj = new("Tunnel " + i);
-            obj = Instantiate(part, new Vector3(0, 0, -10 * amount / 2 + 10 * i), Quaternion.identity);
+            GameObject obj = Instantiate(part, new Vector3(0, 0, -10 * amount / 2 + 10 * i), Quaternion.identity);
+            obj.name = "Tunnel " + i;
             obj.GetComponent<PartSelection>().ChooseRandom();
             parts[i] = obj;
         }

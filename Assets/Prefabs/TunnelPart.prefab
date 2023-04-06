@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6502027984932222881}
   - component: {fileID: 642072843908240109}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TunnelPart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,6 +64,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tunnel 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1298821829312018634, guid: 39ccf52eeb7b6714db50d97a11d9afe7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1534423243352799231, guid: 39ccf52eeb7b6714db50d97a11d9afe7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1823262124917006960, guid: 39ccf52eeb7b6714db50d97a11d9afe7, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -108,6 +116,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3206024011128261531, guid: 39ccf52eeb7b6714db50d97a11d9afe7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39ccf52eeb7b6714db50d97a11d9afe7, type: 3}
 --- !u!1 &1559631523468624629 stripped
@@ -127,9 +139,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6502027984932222881}
     m_Modifications:
+    - target: {fileID: 5320707122921810162, guid: 7d8f6d5eb48a684479b930c3fc7ff7ab, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8134550846419244182, guid: 7d8f6d5eb48a684479b930c3fc7ff7ab, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8624024643090717603, guid: 7d8f6d5eb48a684479b930c3fc7ff7ab, type: 3}
       propertyPath: m_Name
       value: Tunnel 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8624024643090717603, guid: 7d8f6d5eb48a684479b930c3fc7ff7ab, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8999705069705445657, guid: 7d8f6d5eb48a684479b930c3fc7ff7ab, type: 3}
       propertyPath: m_RootOrder
@@ -194,6 +218,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6502027984932222881}
     m_Modifications:
+    - target: {fileID: 5920318643810929909, guid: 00010ee28b14a4f40af31b3f9eff7c68, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7429427094793184542, guid: 00010ee28b14a4f40af31b3f9eff7c68, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -238,9 +266,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7718178435867095185, guid: 00010ee28b14a4f40af31b3f9eff7c68, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7805143019048353700, guid: 00010ee28b14a4f40af31b3f9eff7c68, type: 3}
       propertyPath: m_Name
       value: Tunnel 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7805143019048353700, guid: 00010ee28b14a4f40af31b3f9eff7c68, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00010ee28b14a4f40af31b3f9eff7c68, type: 3}
@@ -305,9 +341,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6488732428673771778, guid: 081771219b5ebac489ec67403d91efe1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6719812227813566007, guid: 081771219b5ebac489ec67403d91efe1, type: 3}
       propertyPath: m_Name
       value: Tunnel 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719812227813566007, guid: 081771219b5ebac489ec67403d91efe1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7149978802358146406, guid: 081771219b5ebac489ec67403d91efe1, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 081771219b5ebac489ec67403d91efe1, type: 3}

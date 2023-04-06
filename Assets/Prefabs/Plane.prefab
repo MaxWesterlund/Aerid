@@ -370,8 +370,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 189109f027672bb429682a17800e813b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lWing: {fileID: 0}
-  rWing: {fileID: 0}
   pitchAcceleration: 3
   pitchDeacceleration: 2
   maxPitchSpeed: 1
@@ -398,8 +396,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e9056a13373d3944995b477f438d73b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lWing: {fileID: 7814413929079062663}
-  rWing: {fileID: 7814413929070745910}
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &7814413928819915176
 GameObject:
   m_ObjectHideFlags: 0

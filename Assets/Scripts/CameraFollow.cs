@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    Rigidbody rb;
-
     [SerializeField] Transform target;
 
     [SerializeField] float rotationSpeed;
