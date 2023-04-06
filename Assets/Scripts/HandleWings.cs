@@ -10,17 +10,11 @@ public class HandleWings : MonoBehaviour {
     void Awake() {
         GameManager gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         gameManager.Collision += OnCollision;
-        gameManager.Restart += OnRestart;
     }
 
     void OnCollision() {
         EnableWing(leftWing, false);
         EnableWing(rightWing, false);
-    }
-
-    void OnRestart() {
-        EnableWing(leftWing, true);
-        EnableWing(rightWing, true);
     }
 
     void EnableWing(GameObject wing, bool b) {

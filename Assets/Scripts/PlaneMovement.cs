@@ -41,7 +41,6 @@ public class PlaneMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         GameManager gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         gameManager.Collision += OnCollision;
-        gameManager.Restart += OnRestart;
     }
 
     void OnCollision() {
