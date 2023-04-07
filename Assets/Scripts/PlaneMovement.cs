@@ -126,6 +126,6 @@ public class PlaneMovement : MonoBehaviour
     }
     
     Vector3 GravityForce() {
-        return Vector3.down * LiftForce().z;
+        return Vector3.down * LiftForce().y;
     }
 }
