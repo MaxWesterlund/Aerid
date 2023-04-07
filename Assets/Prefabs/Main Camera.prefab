@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4171152702596555142}
   - component: {fileID: 4171152702596555137}
   - component: {fileID: 4171152702596555136}
-  - component: {fileID: 4171152702596555140}
   - component: {fileID: 4171152702596555143}
   m_Layer: 0
   m_Name: Main Camera
@@ -88,22 +87,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4171152702596555139}
   m_Enabled: 1
---- !u!54 &4171152702596555140
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4171152702596555139}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &4171152702596555143
 MonoBehaviour:
   m_ObjectHideFlags: 0
