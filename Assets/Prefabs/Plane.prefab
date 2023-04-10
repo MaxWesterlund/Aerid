@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7814413927750916588}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.224, z: -6}
+  m_LocalPosition: {x: 0, y: 0, z: -16.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -55,8 +55,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7814413927814454242}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 36.88}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 15.1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7814413928586287487}
@@ -253,6 +253,7 @@ GameObject:
   - component: {fileID: 7814413928764929567}
   - component: {fileID: 7814413928764929560}
   - component: {fileID: 7814413928764929561}
+  - component: {fileID: 1806779917}
   m_Layer: 3
   m_Name: Plane
   m_TagString: Untagged
@@ -336,19 +337,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 189109f027672bb429682a17800e813b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pitchAcceleration: 3
-  pitchDeacceleration: 2
-  maxPitchSpeed: 1
-  rollAcceleration: 6
-  rollDeacceleration: 6
-  maxRollSpeed: 5
+  pitchAcceleration: 7
+  pitchDeacceleration: 4
+  maxPitchSpeed: 1.5
+  rollAcceleration: 8
+  rollDeacceleration: 10
+  maxRollSpeed: 4
   yawAcceleration: 2
   yawDeacceleration: 2
   maxYawSpeed: 0.5
   forwardAcceleration: 500
   forwardDeacceleration: 200
-  minForwardSpeed: 1000
-  maxForwardSpeed: 2500
+  minForwardSpeed: 2000
+  maxForwardSpeed: 3000
   gravityAcceleration: 9.82
 --- !u!114 &7814413928764929561
 MonoBehaviour:
@@ -365,6 +366,18 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &1806779917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7814413928764929539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39f983a666a5eff49a129ecb0fec7085, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8360889842579009017
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -428,6 +441,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 79905ee24e1e0544aadb8cac5fcae68b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a1bfe804074e9de4eb04955098f81a7d, type: 2}
     - target: {fileID: -3071180390171350127, guid: 79905ee24e1e0544aadb8cac5fcae68b, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -464,7 +481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83b9fcd5c55569640b114b67e808ffc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 1
 --- !u!4 &8326417384380992018 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 79905ee24e1e0544aadb8cac5fcae68b, type: 3}

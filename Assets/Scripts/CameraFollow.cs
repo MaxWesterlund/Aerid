@@ -9,13 +9,35 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] float rotationSpeed;
     [SerializeField] float moveSpeed;
 
-    void Start() {
+    bool isHit = false;
+
+    void Awake() {
+        if (GameObject.Find("Game Manager") != null) {
+            GameManager gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+            gameManager.Hit += OnHit;
+            gameManager.Collision += OnCollision;
+            gameManager.GenerationFinished += OnGenerationFinished;
+        }
+    }
+
+    void OnHit() {
+        isHit = true;
+    }
+
+    void OnCollision() {
+        isHit = true;
+    }
+
+    void OnGenerationFinished() {
         transform.position = target.position;
+        transform.rotation = target.rotation;
     }
 
     void FixedUpdate() {
-        transform.rotation = Quaternion.Slerp(transform.rotation, target.rotation, rotationSpeed * Time.deltaTime);
+        Quaternion rotation = target.rotation;
 
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
+        
         transform.position = Vector3.Lerp(transform.position, target.position, moveSpeed * Time.deltaTime);
     }
 }

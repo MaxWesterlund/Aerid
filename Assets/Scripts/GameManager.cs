@@ -2,29 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour {
     [SerializeField] Transform[] checkPoints;
 
+    public event Action Hit;
     public event Action Collision;
+    public event Action GenerationFinished;
 
     void Awake() {
         GameObject plane = GameObject.Find("Plane");
-
+        
         PlaneCollision planeCollision = plane.GetComponent<PlaneCollision>();
+        planeCollision.Hit += OnHit;
         planeCollision.Collision += OnCollision;
 
-        CheckpointChecker checkpointChecker = plane.GetComponent<CheckpointChecker>();
-        checkpointChecker.Entered += OnCheckpoint;
+        TerrainGen terrainGen = GetComponent<TerrainGen>();
+        terrainGen.GenerationFinished += OnGenerationFinished;
     }
     
+    void OnHit() {
+        print("Gamemanager: Hit");
+        Hit?.Invoke();
+    }
+
     void OnCollision() {
         print("Gamemanager: Collided");
         Collision?.Invoke();
     }
 
-    void OnCheckpoint() {
-        print("Gamemanager: Checkpoint Reached");
+    void OnGenerationFinished() {
+        print("Gamemanager: Generation Finished");
+        GenerationFinished?.Invoke();
     }
 }

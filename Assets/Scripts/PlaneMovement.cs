@@ -39,18 +39,29 @@ public class PlaneMovement : MonoBehaviour
 
     void Awake() {
         rb = GetComponent<Rigidbody>();
-        GameManager gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        gameManager.Collision += OnCollision;
+        if (GameObject.Find("Game Manager") != null) {
+            GameManager gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+            gameManager.Hit += OnHit;
+            gameManager.Collision += OnCollision;
+            gameManager.GenerationFinished += OnGenerationFinished;
+        }
     }
 
-    void OnCollision() {
+    void OnHit() {
         rb.useGravity = true;
         canMove = false;
     }
 
-    void OnRestart() {
-        rb.useGravity = false;
-        canMove = true;
+    void OnCollision() {
+        rb.isKinematic = true;
+        canMove = false;
+        rb.velocity = Vector3.zero;
+        transform.position += 0.6f * transform.forward;
+    }
+
+    void OnGenerationFinished() {
+        Vector3 spawnPos = GameObject.Find("Spawn").transform.position;
+        transform.position = spawnPos;
     }
 
     void OnTilt(InputValue info) {
