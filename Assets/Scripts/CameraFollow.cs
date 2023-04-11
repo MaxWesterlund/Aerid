@@ -9,8 +9,6 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] float rotationSpeed;
     [SerializeField] float moveSpeed;
 
-    bool isHit = false;
-
     void Awake() {
         if (GameObject.Find("Game Manager") != null) {
             GameManager gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
@@ -21,11 +19,11 @@ public class CameraFollow : MonoBehaviour
     }
 
     void OnHit() {
-        isHit = true;
+        
     }
 
     void OnCollision() {
-        isHit = true;
+
     }
 
     void OnGenerationFinished() {

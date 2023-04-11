@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class TerrainGen : MonoBehaviour
     [SerializeField] float heightMultiplier;
     [SerializeField] AnimationCurve heightCurve;
     [SerializeField] AnimationCurve falloffcurve;
+    [SerializeField] int levels;
     [SerializeField] float waterLevel;
     [SerializeField] Material terrainMaterial;
     [SerializeField] Material waterMaterial;
@@ -28,11 +30,9 @@ public class TerrainGen : MonoBehaviour
         
         GenerateSpawn();
         GenerateMap();
-        GenerateChunks();
+        StartCoroutine(GenerateChunks());
 
-        Water water = new Water(totalSize, waterLevel * heightMultiplier, waterMaterial);
-
-        GenerationFinished?.Invoke();
+        Water water = new Water(totalSize, 100000, waterLevel * heightMultiplier, waterMaterial);
     }
 
     void GenerateSpawn() {
@@ -40,7 +40,7 @@ public class TerrainGen : MonoBehaviour
         obj.transform.position = new Vector3(totalSize / 2, heightMultiplier + 10, totalSize / 2);
     }
 
-    void GenerateChunks() {
+    IEnumerator GenerateChunks() {
         chunkGrid = new Chunk[mapSize, mapSize];
 
         int index = 0;
@@ -48,10 +48,11 @@ public class TerrainGen : MonoBehaviour
             for (int y = 0; y < mapSize; y++) {        
                 Chunk chunk = new Chunk(index, GenerateMesh(x, y, tileGrid), terrainMaterial, transform);
                 chunkGrid[x, y] = chunk;
+                yield return new WaitForEndOfFrame();
                 index++;
             }
         }
-            
+        GenerationFinished?.Invoke();
     }
 
     void GenerateMap() {
@@ -64,8 +65,8 @@ public class TerrainGen : MonoBehaviour
                 float yDistance = Mathf.Abs(maxDistance - y);
 
                 float distance = Mathf.Sqrt(xDistance * xDistance + yDistance * yDistance);
-                
-                float f = 0; 
+
+                float f = 0;
 
                 if (distance > maxDistance) {
                     f = 0;
@@ -87,7 +88,7 @@ public class TerrainGen : MonoBehaviour
         for (int x = 0; x < totalSize; x++) {
             for (int y = 0; y < totalSize; y++) {
                 float value = noiseMap[x, y];
-                Tile tile = new Tile(value, new(x, y), heightMultiplier, heightCurve);
+                Tile tile = new Tile(value, new(x, y), heightMultiplier, levels, heightCurve);
                 tileGrid[x, y] = tile;
             }
         }
@@ -128,9 +129,9 @@ public struct Tile {
     public float Value;
     public float Height;
     public Vector2Int Position;
-    public Tile(float value, Vector2Int position, float heightMultiplier, AnimationCurve heightCurve) {
+    public Tile(float value, Vector2Int position, float heightMultiplier, int levels, AnimationCurve heightCurve) {
         Value = value;
-        Height = Mathf.Round(value * heightMultiplier * heightCurve.Evaluate(Value));
+        Height = Mathf.Round(value * heightMultiplier * heightCurve.Evaluate(Value) * levels) / levels;
         Position = position;
     }
 }

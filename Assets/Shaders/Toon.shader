@@ -67,7 +67,7 @@ Shader "Unlit/Toon"
                 float NdotL = dot(_WorldSpaceLightPos0, normal);
 
                 float shadow = SHADOW_ATTENUATION(i);
-                float lightIntensity = smoothstep(0, 0.5, NdotL * shadow);
+                float lightIntensity = smoothstep(0, 0.1, NdotL * shadow);
 
                 fixed4 col = tex2D(_MainTex, i.uv);
 

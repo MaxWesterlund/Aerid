@@ -56,7 +56,7 @@ public class PlaneMovement : MonoBehaviour
         rb.isKinematic = true;
         canMove = false;
         rb.velocity = Vector3.zero;
-        transform.position += 0.6f * transform.forward;
+        transform.position += 1f * rb.velocity.normalized;
     }
 
     void OnGenerationFinished() {
