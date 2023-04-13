@@ -9,6 +9,8 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] float rotationSpeed;
     [SerializeField] float moveSpeed;
 
+    bool canMove = false;
+
     void Awake() {
         if (GameObject.Find("Game Manager") != null) {
             GameManager gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
@@ -29,9 +31,14 @@ public class CameraFollow : MonoBehaviour
     void OnGenerationFinished() {
         transform.position = target.position;
         transform.rotation = target.rotation;
+
+        canMove = true;
     }
 
     void FixedUpdate() {
+        if (!canMove) {
+            return;
+        }
         Quaternion rotation = target.rotation;
 
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);

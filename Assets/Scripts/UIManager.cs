@@ -2,42 +2,79 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour {
-    RectTransform backgroundTransform;
+    Stats stats;
+
+    RectTransform loadingScreenTransform;
     RectTransform spinnerTransform;
 
-    [SerializeField] GameObject background;
+    RectTransform scoreScreenTransform;
+
+    [Header("Loading Screen")]
+    [SerializeField] GameObject loadingScreen;
     [SerializeField] GameObject spinner;
+    
+    [Header("Score Screen")]
+    [SerializeField] GameObject scoreScreen;
+    [SerializeField] TMP_Text timeSurvivedScore;
+    [SerializeField] TMP_Text missilesDestroyedScore;
+    [SerializeField] TMP_Text totalScoreScore;
+
+    [SerializeField] Button restartButton;
+    [SerializeField] Button exitButton;
 
     [SerializeField] float closeSpeed;
     [SerializeField] float spinSpeed;
 
-    bool hasGenerated = false;
+    [SerializeField] float scoreCountTime;
+    [SerializeField] float scoreDecimals;
+
+    bool showStatsScreen = false;
+    bool showLoadingScreen = true;
 
     float spinLerp = 0;
-    float closeLerp = 0;
+    float lerp = 0;
 
     void Awake() {
         if (GameObject.Find("Game Manager") != null) {
-            GameManager gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+            GameObject obj = GameObject.Find("Game Manager");
+            GameManager gameManager = obj.GetComponent<GameManager>();
+            gameManager.Collision += OnCollision;
             gameManager.GenerationFinished += OnGenerationFinished;
+            stats = obj.GetComponent<Stats>();
         }
-        backgroundTransform = background.GetComponent<RectTransform>();
+        loadingScreenTransform = loadingScreen.GetComponent<RectTransform>();
         spinnerTransform = spinner.GetComponent<RectTransform>();
+
+        scoreScreenTransform = scoreScreen.GetComponent<RectTransform>();
+    }
+
+    void OnCollision() {
+        showStatsScreen = true;
+        lerp = 0;
+
+        timeSurvivedScore.text = System.Math.Round(stats.TimeSurvived, 2).ToString() + "s";
+        missilesDestroyedScore.text = stats.MissilesDestroyed.ToString();
+        totalScoreScore.text = System.Math.Round(stats.TotalScore, 2).ToString();
     }
     
     void OnGenerationFinished() {
-        hasGenerated = true;
+        showLoadingScreen = false;
     }
 
     void Update() {
-        if (!hasGenerated) {
+        if (showLoadingScreen) {
             Spin();
         }
         else {
             spinner.SetActive(false);
-            Close();
+            ShowScreen(false, loadingScreenTransform);
+        }
+
+        if (showStatsScreen) {
+            ShowScreen(true, scoreScreenTransform);
         }
     }
 
@@ -50,10 +87,10 @@ public class UIManager : MonoBehaviour {
         spinnerTransform.rotation = Quaternion.Euler(0, 0, zRot);
     }
 
-    void Close() {
-        closeLerp += Time.deltaTime;
-        float closeAmount = Mathf.SmoothStep(backgroundTransform.offsetMin.y, 600, closeSpeed * closeLerp);
-        backgroundTransform.offsetMin = new Vector2(backgroundTransform.offsetMin.x, closeAmount);
-        backgroundTransform.offsetMax = new Vector2(backgroundTransform.offsetMax.x, closeAmount);
+    void ShowScreen(bool show, RectTransform transform) {
+        lerp += Time.deltaTime;
+        float closeAmount = Mathf.SmoothStep(transform.offsetMin.y, 600 * (show? 0 : 1), closeSpeed * lerp);
+        transform.offsetMin = new Vector2(transform.offsetMin.x, closeAmount);
+        transform.offsetMax = new Vector2(transform.offsetMax.x, closeAmount);
     }
 }

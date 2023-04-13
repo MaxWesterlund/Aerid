@@ -7,10 +7,15 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
     [SerializeField] GameObject plane;
 
-    public event Action GenerateTerrain;
+    public event Action MissileDestroyed;
     public event Action Hit;
     public event Action Collision;
     public event Action GenerationFinished;
+
+    public void OnMissileDestroyed() {
+        print("Gamemanager: Missile Destroyed");
+        MissileDestroyed?.Invoke();
+    }
 
     void Awake() {
         if (GetComponent<TerrainGen>() != null) {
@@ -20,11 +25,7 @@ public class GameManager : MonoBehaviour {
         plane.SetActive(false);
     }
 
-    void OnGenerationFinished() {
-        print("Gamemanager: Generation Finished");
-        plane.SetActive(true);
-        GenerationFinished?.Invoke();
-
+    void Start() {
         if (GameObject.Find("Spawn") != null) {
             GameObject spawn = GameObject.Find("Spawn");
             plane.transform.position = spawn.transform.position;
@@ -34,6 +35,12 @@ public class GameManager : MonoBehaviour {
         
         planeCollision.Hit += OnHit;
         planeCollision.Collision += OnCollision;
+    }
+
+    void OnGenerationFinished() {
+        print("Gamemanager: Generation Finished");
+        plane.SetActive(true);
+        GenerationFinished?.Invoke();
     }
     
     void OnHit() {

@@ -28,17 +28,18 @@ public class TerrainGen : MonoBehaviour
     void Start() {
         totalSize = chunkSize * mapSize;
         
-        GenerateSpawn();
         GenerateMap();
+        GenerateSpawn();
         StartCoroutine(GenerateChunks());
 
         Water water = new Water(totalSize, 100000, waterLevel * heightMultiplier, waterMaterial);
     }
-
+  
     void GenerateSpawn() {
         GameObject obj = new("Spawn");
         obj.transform.position = new Vector3(totalSize / 2, heightMultiplier + 10, totalSize / 2);
     }
+
 
     IEnumerator GenerateChunks() {
         chunkGrid = new Chunk[mapSize, mapSize];

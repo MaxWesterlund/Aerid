@@ -9,7 +9,7 @@
                     "name": "Steer",
                     "type": "PassThrough",
                     "id": "75ef1e00-80d8-4a33-80cf-f242d4bd8b73",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Analog",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -18,7 +18,7 @@
                     "name": "Tilt",
                     "type": "PassThrough",
                     "id": "301d979b-f70f-4008-8fb9-d73db7fd7a2d",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Analog",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
