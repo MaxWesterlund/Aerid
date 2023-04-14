@@ -66,8 +66,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c5b5619e4a2a24ab18a9ca100194dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  additionalSpeed: 4
-  rotationSpeed: 1.3
   model: {fileID: 7408515521500963515}
   explosionParticles: {fileID: 4895353280495137374}
   fireParticles: {fileID: 4962815014638774802}
@@ -83,7 +81,7 @@ AudioSource:
   m_GameObject: {fileID: 6027687905218056487}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 6b54ca8ddc00e094d8b1f0fab09c5f58, type: 2}
   m_audioClip: {fileID: 8300000, guid: 79073c4885d66e540b3c2f77dc07f64b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.733
@@ -130,7 +128,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.812
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -179,7 +177,7 @@ AudioSource:
   m_GameObject: {fileID: 6027687905218056487}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 6b54ca8ddc00e094d8b1f0fab09c5f58, type: 2}
   m_audioClip: {fileID: 8300000, guid: 86b637c61c21f8948a72fcf0af8617c4, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1

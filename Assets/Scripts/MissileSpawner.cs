@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MissileSpawner : MonoBehaviour {
+    MissileStats missileStats;
+
     [SerializeField] GameObject missile;
     [SerializeField] Transform target;
-    [SerializeField] float delay;
+    [SerializeField] float spawnDelay;
     [SerializeField] float spawnDistance;
 
     List<MissileBehaviour> missiles = new();
 
     Coroutine spawnTimer;
 
-    bool canSpawn = false;
-
     void Awake() {
         if (GameObject.Find("Game Manager") != null) {
             GameManager gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+            missileStats = GetComponent<MissileStats>();
             gameManager.Hit += OnHit;
             gameManager.Collision += OnCollision;
             gameManager.GenerationFinished += OnGenerationFinished;
@@ -24,28 +25,24 @@ public class MissileSpawner : MonoBehaviour {
     }
 
     void OnHit() {
-        canSpawn = false;
+        StopCoroutine(SpawnTimer());
     }
 
     void OnCollision() {
-        canSpawn = false;
+        StopCoroutine(SpawnTimer());
     }
 
     void OnGenerationFinished() {
-        canSpawn = true;
+        StartCoroutine(SpawnTimer());
     }
 
     void Update() {
-        if (!canSpawn) {
-            return;
-        }
-
-        if (spawnTimer == null) {
-            spawnTimer = StartCoroutine(SpawnTimer());
-        }
     }
 
     IEnumerator SpawnTimer() {
+        float interval = missileStats.SpawnInterval;
+        yield return new WaitForSeconds(interval);
+
         float x = Random.Range(-1f, 1f);
         float y = Mathf.Sin(Mathf.Acos(x)) * Random.Range(-1, 1);
 
@@ -65,11 +62,7 @@ public class MissileSpawner : MonoBehaviour {
             GameObject obj = Instantiate(missile, spawnPos, Quaternion.identity);
             missiles.Add(obj.GetComponent<MissileBehaviour>());
         }
-
-        print("missile spawned");
-
-        yield return new WaitForSeconds(delay);
         
-        spawnTimer = null;
+        StartCoroutine(SpawnTimer());
     }
 }

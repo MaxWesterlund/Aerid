@@ -7,6 +7,7 @@ public class PlaneAudio : MonoBehaviour {
     Rigidbody rb;
     [SerializeField] AudioSource planeSound;
     [SerializeField] AudioSource windSound;
+    [SerializeField] AudioSource explosionSound;
  
     void Awake() {
         rb = GetComponent<Rigidbody>();
@@ -25,6 +26,7 @@ public class PlaneAudio : MonoBehaviour {
     void OnCollision() {
         planeSound.Stop();
         windSound.Stop();
+        explosionSound.Play();
     }
 
     void OnGenerationFinished() {

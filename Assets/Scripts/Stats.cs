@@ -7,6 +7,8 @@ public class Stats : MonoBehaviour {
     public int MissilesDestroyed;
     public float TotalScore;
 
+    public float HighScore;
+
     bool countTime = false;
 
     void Awake() {
@@ -19,6 +21,10 @@ public class Stats : MonoBehaviour {
         }
     }
 
+    void Start() {
+        HighScore = PlayerPrefs.GetFloat("High Score");
+    }
+
     void OnMissileDestroyed() {
         MissilesDestroyed += 1;
     }
@@ -29,6 +35,11 @@ public class Stats : MonoBehaviour {
 
     void OnCollision() {
         countTime = false;
+        if (TotalScore > HighScore) {
+            print("ee");
+            PlayerPrefs.SetFloat("High Score", TotalScore);
+            print(PlayerPrefs.GetFloat("High Score"));
+        }
     }
 
     void OnGenerationFinished() {

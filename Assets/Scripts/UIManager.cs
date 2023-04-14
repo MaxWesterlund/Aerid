@@ -25,6 +25,7 @@ public class UIManager : MonoBehaviour {
     [SerializeField] Button restartButton;
     [SerializeField] Button exitButton;
 
+    [SerializeField] float delay;
     [SerializeField] float closeSpeed;
     [SerializeField] float spinSpeed;
 
@@ -52,6 +53,11 @@ public class UIManager : MonoBehaviour {
     }
 
     void OnCollision() {
+        StartCoroutine(ShowStats());
+    }
+
+    IEnumerator ShowStats() {
+        yield return new WaitForSeconds(delay);
         showStatsScreen = true;
         lerp = 0;
 

@@ -14,15 +14,25 @@ public class PopupManager : MonoBehaviour {
 
     int missilesDestroyed;
 
+    bool canPopup = true;
+
     void Awake() {
         if (GameObject.Find("Game Manager") != null) {
             GameObject obj = GameObject.Find("Game Manager");
             GameManager gameManager = obj.GetComponent<GameManager>();
+            gameManager.Collision += OnCollision;
             gameManager.MissileDestroyed += OnMissileDestroyed;
         }
     }
 
+    void OnCollision() {
+        canPopup = false;
+    }
+
     void OnMissileDestroyed() {
+        if (!canPopup) {
+            return;
+        }
         if (missileCounter != null) {
             StopCoroutine(missileCounter);
         }

@@ -37,7 +37,7 @@ public class TerrainGen : MonoBehaviour
   
     void GenerateSpawn() {
         GameObject obj = new("Spawn");
-        obj.transform.position = new Vector3(totalSize / 2, heightMultiplier + 10, totalSize / 2);
+        obj.transform.position = new Vector3(totalSize / 2, heightMultiplier + .1f, totalSize / 2);
     }
 
 

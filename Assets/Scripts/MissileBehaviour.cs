@@ -5,15 +5,13 @@ using UnityEngine;
 
 public class MissileBehaviour : MonoBehaviour {
     GameManager gameManager;
+    MissileStats missileStats;
     Stats stats;
 
     Transform target;
 
     Rigidbody rb;
     Rigidbody targetRb;
-
-    [SerializeField] float additionalSpeed;
-    [SerializeField] float rotationSpeed;
 
     [SerializeField] GameObject model;
     [SerializeField] ParticleSystem explosionParticles;
@@ -29,6 +27,9 @@ public class MissileBehaviour : MonoBehaviour {
             stats = GameObject.Find("Game Manager").GetComponent<Stats>();
             gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
             gameManager.Collision += OnCollision;
+        }
+        if (GameObject.Find("Missile Manager") != null) {
+            missileStats = GameObject.Find("Missile Manager").GetComponent<MissileStats>();
         }
         if (GameObject.Find("Plane") != null) {
             target = GameObject.Find("Plane").GetComponent<Transform>();
@@ -67,6 +68,9 @@ public class MissileBehaviour : MonoBehaviour {
     }
 
     void Follow() {
+        float speed = missileStats.Speed;
+        float rotationSpeed = missileStats.RotationSpeed;
+
         if (isDestroyed) {
             return;
         }
@@ -74,7 +78,7 @@ public class MissileBehaviour : MonoBehaviour {
         Quaternion rotation = Quaternion.LookRotation(distance);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.fixedDeltaTime);
 
-        rb.velocity = targetRb.velocity.magnitude * transform.forward + additionalSpeed * transform.forward;
+        rb.velocity = targetRb.velocity.magnitude * transform.forward + speed * transform.forward;
     }
 
     void OnCollisionEnter(Collision info) {
@@ -84,7 +88,7 @@ public class MissileBehaviour : MonoBehaviour {
         explosionSound.Play();
 
         if (info.gameObject.layer != 3) {
-            gameManager.OnMissileDestroyed();
+            gameManager.OnMissileDestroyed(transform.position);
         }
     }
 

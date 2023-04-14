@@ -8,13 +8,18 @@ public class GameManager : MonoBehaviour {
     [SerializeField] GameObject plane;
 
     public event Action MissileDestroyed;
+    public event EventHandler<MissileDestroyedWithPosArgs> MissileDestroyedWithPos;
+    public class MissileDestroyedWithPosArgs : EventArgs {
+        public Vector3 Pos;
+    }
     public event Action Hit;
     public event Action Collision;
     public event Action GenerationFinished;
 
-    public void OnMissileDestroyed() {
+    public void OnMissileDestroyed(Vector3 p) {
         print("Gamemanager: Missile Destroyed");
         MissileDestroyed?.Invoke();
+        MissileDestroyedWithPos?.Invoke(this, new MissileDestroyedWithPosArgs {Pos = p});
     }
 
     void Awake() {
@@ -52,5 +57,4 @@ public class GameManager : MonoBehaviour {
         print("Gamemanager: Collided");
         Collision?.Invoke();
     }
-
 }

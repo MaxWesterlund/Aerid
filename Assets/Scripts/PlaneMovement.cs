@@ -86,7 +86,7 @@ public class PlaneMovement : MonoBehaviour
         float yawAcc = steerVector.x * yawAcceleration * Time.fixedDeltaTime;
         float rollAcc = tiltVector.x * rollAcceleration * Time.fixedDeltaTime * -1;
         
-        pitch += pitchAcc;
+        pitch += pitchAcc * (Options.Instance.InvertY ? 1 : -1);
         if (tiltVector.y == 0) {
             pitch = Mathf.Lerp(pitch, 0, pitchDeacceleration * Time.fixedDeltaTime);
         }
