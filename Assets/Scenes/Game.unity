@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17526144, g: 0.60417897, b: 1.6912004, a: 1}
+  m_IndirectSpecularColor: {r: 0.36259007, g: 0.71008855, b: 1.2215855, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -395,6 +395,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4171152702596555137, guid: ed173dbef4ccf31418ff087673929928, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171152702596555137, guid: ed173dbef4ccf31418ff087673929928, type: 3}
+      propertyPath: near clip plane
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4171152702596555139, guid: ed173dbef4ccf31418ff087673929928, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -447,6 +455,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 217107591}
+    - target: {fileID: 4171152703589346662, guid: ed173dbef4ccf31418ff087673929928, type: 3}
+      propertyPath: near clip plane
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed173dbef4ccf31418ff087673929928, type: 3}
 --- !u!1 &660299657

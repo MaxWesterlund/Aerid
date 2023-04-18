@@ -32,7 +32,7 @@ public class TerrainGen : MonoBehaviour
         GenerateSpawn();
         StartCoroutine(GenerateChunks());
 
-        Water water = new Water(totalSize, 100000, waterLevel * heightMultiplier, waterMaterial);
+        Water water = new Water(totalSize, 1000, waterLevel * heightMultiplier, waterMaterial);
     }
   
     void GenerateSpawn() {

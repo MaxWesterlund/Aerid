@@ -10,7 +10,7 @@ public class Options : MonoBehaviour {
     public static Options Instance;
 
     public bool InvertY = false;
-    public float Volume = .5f;
+    public float Volume;
 
     void Awake() {
         if (Instance != null) {
@@ -23,7 +23,12 @@ public class Options : MonoBehaviour {
 
     void Start() {
         InvertY = PlayerPrefs.GetInt("Invert Y") == 1 ? true : false;
-        Volume = PlayerPrefs.GetFloat("Volume");
+        if (!PlayerPrefs.HasKey("Volume")) {
+            Volume = .5f;
+        }
+        else {
+            Volume = PlayerPrefs.GetFloat("Volume");
+        }
     }
 
     public void ToggleInvertY() {
